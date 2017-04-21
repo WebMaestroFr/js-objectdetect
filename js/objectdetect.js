@@ -1,6 +1,6 @@
 if (typeof module !== 'undefined') {
     // Node.js Canvas
-    var Canvas = require('canvas-prebuilt');
+    var Canvas = require('canvas');
 }
 
 /**
