@@ -7,7 +7,6 @@
     "author": "mtschirs",
     "license": "MIT",
     "dependencies": {
-        "canvas": "^1.6.5",
         "canvas-prebuilt": "^1.6.5-prerelease.1"
     }
 }

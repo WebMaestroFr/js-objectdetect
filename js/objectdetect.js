@@ -1,14 +1,14 @@
+if (typeof module !== 'undefined') {
+    // Node.js Canvas
+    var Canvas = require('canvas-prebuilt');
+}
+
 /**
  * Real-time object detector based on the Viola Jones Framework.
  * Compatible to OpenCV Haar Cascade Classifiers (stump based only).
  *
  * Copyright (c) 2012, Martin Tschirsich
  */
-
-if (typeof module !== 'undefined') {
-    // Node.js Canvas
-    var Canvas = require('canvas');
-}
 
 (function(module) {
     "use strict";
