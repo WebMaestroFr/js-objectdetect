@@ -900,7 +900,7 @@ if (typeof module !== 'undefined') {
             var scale = 1;
             for (var i = 0; i < this.numScales; ++i) {
                 var scaledWidth = ~~(width / scale);
-                this.compiledClassifiers[i] = objectdetect.compileClassifier(classifier, scaledWidth);
+                this.compiledClassifiers[i] = module.compileClassifier(classifier, scaledWidth);
                 scale *= scaleFactor;
             }
         }
@@ -934,7 +934,7 @@ if (typeof module !== 'undefined') {
                 .context
                 .getImageData(0, 0, width, height)
                 .data;
-            this.gray = objectdetect.convertRgbaToGrayscale(imageData, this.gray);
+            this.gray = module.convertRgbaToGrayscale(imageData, this.gray);
 
             var rects = [];
             var scale = 1;
@@ -947,20 +947,20 @@ if (typeof module !== 'undefined') {
                         .scaledGray
                         .set(this.gray);
                 } else {
-                    this.scaledGray = objectdetect.rescaleImage(this.gray, width, height, scale, this.scaledGray);
+                    this.scaledGray = module.rescaleImage(this.gray, width, height, scale, this.scaledGray);
                 }
 
                 if (canny) {
-                    this.canny = objectdetect.computeCanny(this.scaledGray, scaledWidth, scaledHeight, this.canny);
-                    this.cannySat = objectdetect.computeSat(this.canny, scaledWidth, scaledHeight, this.cannySat);
+                    this.canny = module.computeCanny(this.scaledGray, scaledWidth, scaledHeight, this.canny);
+                    this.cannySat = module.computeSat(this.canny, scaledWidth, scaledHeight, this.cannySat);
                 }
 
-                this.sat = objectdetect.computeSat(this.scaledGray, scaledWidth, scaledHeight, this.sat);
-                this.ssat = objectdetect.computeSquaredSat(this.scaledGray, scaledWidth, scaledHeight, this.ssat);
+                this.sat = module.computeSat(this.scaledGray, scaledWidth, scaledHeight, this.sat);
+                this.ssat = module.computeSquaredSat(this.scaledGray, scaledWidth, scaledHeight, this.ssat);
                 if (this.tilted) 
-                    this.rsat = objectdetect.computeRsat(this.scaledGray, scaledWidth, scaledHeight, this.rsat);
+                    this.rsat = module.computeRsat(this.scaledGray, scaledWidth, scaledHeight, this.rsat);
                 
-                var newRects = objectdetect.detect(this.sat, this.rsat, this.ssat, this.cannySat, scaledWidth, scaledHeight, stepSize, this.compiledClassifiers[i]);
+                var newRects = module.detect(this.sat, this.rsat, this.ssat, this.cannySat, scaledWidth, scaledHeight, stepSize, this.compiledClassifiers[i]);
                 for (var j = newRects.length - 1; j >= 0; --j) {
                     var newRect = newRects[j];
                     newRect[0] *= scale;
@@ -973,7 +973,7 @@ if (typeof module !== 'undefined') {
                 scale *= this.scaleFactor;
             }
             return (group
-                ? objectdetect.groupRectangles(rects, group)
+                ? module.groupRectangles(rects, group)
                 : rects)
                 .sort(function(r1, r2) {
                     return r2[4] - r1[4];
