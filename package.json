@@ -3,7 +3,9 @@
     "version": "1.0.0",
     "description": "Javascript Real-Time Object Detection",
     "main": "js/objectdetect.js",
-    "scripts": {},
+    "scripts": {
+        "install": "sudo apt-get install libcairo2-dev libjpeg-dev libpango1.0-dev libgif-dev build-essential g++ -y"
+    },
     "author": "mtschirs",
     "license": "MIT",
     "dependencies": {
