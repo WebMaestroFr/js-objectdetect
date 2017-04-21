@@ -1,0 +1,13 @@
+{
+    "name": "js-objectdetect",
+    "version": "1.0.0",
+    "description": "Javascript Real-Time Object Detection",
+    "main": "js/objectdetect.js",
+    "scripts": {},
+    "author": "mtschirs",
+    "license": "MIT",
+    "dependencies": {
+        "canvas": "^1.6.5",
+        "canvas-prebuilt": "^1.6.5-prerelease.1"
+    }
+}

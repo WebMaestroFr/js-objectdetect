@@ -4,7 +4,13 @@
  *
  * Copyright (c) 2012, Martin Tschirsich
  */
-(function(exports) {
+
+if (typeof module !== 'undefined') {
+    // Node.js Canvas
+    var Canvas = require('canvas');
+}
+
+(function(module) {
     "use strict";
 
     var/**
@@ -872,7 +878,15 @@
 		 * @param classifier  Compiled cascade classifier
 		 */
         function detector(width, height, scaleFactor, classifier) {
-            this.canvas = document.createElement('canvas');
+
+            if (typeof module === 'undefined') {
+                // Browser Canvas
+                this.canvas = document.createElement('canvas');
+            } else {
+                // Node.js Canvas
+                this.canvas = new Canvas(width, height);
+            }
+
             this.canvas.width = width;
             this.canvas.height = height;
             this.context = this
@@ -969,7 +983,7 @@
         return detector;
     })();
 
-    Object.assign(exports, {
+    Object.assign(module, {
         convertRgbaToGrayscale: convertRgbaToGrayscale,
         rescaleImage: rescaleImage,
         mirrorImage: mirrorImage,
